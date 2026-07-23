@@ -1,0 +1,28 @@
+services:
+  # Deploy the application as a Web Service
+  - type: web
+    name: voting-app
+    
+    # Specify the containerization environment
+    runtime: docker
+    
+    # Render pricing plan (free tier)
+    plan: free
+    
+    # Configure environmental variables
+    envVars:
+      # JDBC connection string for Railway MySQL (e.g. jdbc:mysql://host:port/db)
+      - key: DB_URL
+        sync: false
+      
+      # Railway database username
+      - key: DB_USER
+        sync: false
+      
+      # Railway database password
+      - key: DB_PASSWORD
+        sync: false
+      
+      # Recommended JVM memory settings for running Tomcat in resource-constrained environments
+      - key: JAVA_OPTS
+        value: "-Xms256m -Xmx512m -XX:+UseG1GC"

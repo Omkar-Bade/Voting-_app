@@ -1,0 +1,33 @@
+# Ignore Git version control metadata
+.git
+.gitignore
+
+# Ignore Eclipse / Spring Tool Suite (STS) IDE project files
+.metadata/
+.settings/
+.classpath
+.project
+.jsdtscope
+*.prefs
+
+# Ignore VS Code editor configurations
+.vscode/
+
+# Ignore compiled class outputs and local build directories
+build/
+bin/
+
+# Ignore Java source files since the WAR file is pre-built and has everything packaged
+src/
+
+# Ignore temporary SQL files or database backup files
+*.sql
+
+# Ignore local logs or Tomcat configuration backups
+*.log
+logs/
+temp/
+
+# Ignore OS-specific files that shouldn't be packaged
+Thumbs.db
+.DS_Store
