@@ -56,6 +56,18 @@ public class CandidateDao implements AutoCloseable {
 		}
 	}
 
+	public int getTotalCandidatesCount() throws SQLException {
+		String sql = "SELECT COUNT(*) FROM candidates";
+		try (PreparedStatement select = connection.prepareStatement(sql)) {
+			try (ResultSet rs = select.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
+
 	@Override
 	public void close() throws SQLException {
 		if (closeConnection && connection != null) {

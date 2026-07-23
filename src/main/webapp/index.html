@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - E-Voting App</title>
+    <title>Sign In - E-Voting Portal</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main class="auth-container">
-        <div class="card">
+    <div class="grid-layout">
+        <!-- Left Side: Login Form -->
+        <main class="card">
             <div class="card-info">
-                <h2>Welcome Back</h2>
-                <p>Please sign in to cast your secure vote</p>
+                <h2>Secure Sign In</h2>
+                <p>Access the portal to cast your ballot</p>
             </div>
+            
+            <!-- Success Alert -->
+            <div id="register-alert" class="alert alert-success" style="display: none;">
+                Account created successfully. Please sign in.
+            </div>
+            
+            <!-- Error Alert -->
+            <div id="error-alert" class="alert alert-error" style="display: none;">
+                Invalid email or password.
+            </div>
+
             <form action="login" method="post">
                 <div class="form-group">
                     <label for="email" class="form-label">Email Address</label>
@@ -26,7 +38,62 @@
                     <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                 </div>
             </form>
-        </div>
-    </main>
+            
+            <div class="form-footer-link">
+                New user? <a href="register">Register here</a>
+            </div>
+        </main>
+
+        <!-- Right Side: Stats Panel -->
+        <aside class="stats-card">
+            <h3 class="stats-title">Election Overview</h3>
+            
+            <div class="stat-item">
+                <span class="stat-label">Election Status</span>
+                <span class="status-badge">
+                    <span class="status-dot"></span>
+                    <span id="stat-status">Loading...</span>
+                </span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Candidates Registered</span>
+                <span id="stat-candidates" class="stat-val">--</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-label">Registered Voters</span>
+                <span id="stat-voters" class="stat-val">--</span>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // URL query parameters parsing
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('registered')) {
+                document.getElementById('register-alert').style.display = 'flex';
+            }
+            if (urlParams.has('error')) {
+                document.getElementById('error-alert').style.display = 'flex';
+            }
+
+            // AJAX stats loader
+            fetch("stats")
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("stat-candidates").innerText = data.totalCandidates;
+                    document.getElementById("stat-voters").innerText = data.totalVoters;
+                    document.getElementById("stat-status").innerText = data.status;
+                })
+                .catch(err => {
+                    console.error("Error fetching stats:", err);
+                    document.getElementById("stat-candidates").innerText = "Unavailable";
+                    document.getElementById("stat-voters").innerText = "Unavailable";
+                    document.getElementById("stat-status").innerText = "Active";
+                });
+        });
+    </script>
 </body>
 </html>

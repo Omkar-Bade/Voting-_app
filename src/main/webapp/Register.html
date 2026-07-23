@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - E-Voting Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="auth-container">
+        <div class="card">
+            <div class="card-info">
+                <h2>Create Account</h2>
+                <p>Register as a voter to cast your secure ballot</p>
+            </div>
+            
+            <!-- Error Alert Container -->
+            <div id="error-alert" class="alert alert-error" style="display: none;">
+                ${error}
+            </div>
+
+            <form action="register" method="post">
+                <!-- CSRF Token -->
+                <input type="hidden" name="csrfToken" value="${csrfToken}">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" value="${firstName}" placeholder="John" required autocomplete="given-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" value="${lastName}" placeholder="Doe" required autocomplete="family-name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-input" value="${email}" placeholder="john.doe@example.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" class="form-input" value="${dob}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Min. 6 characters" required autocomplete="new-password">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-block">Register Account</button>
+                </div>
+            </form>
+            
+            <div class="form-footer-link">
+                Already registered? <a href="index.html">Sign in here</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const errorAlert = document.getElementById("error-alert");
+            // Show the error alert only if the servlet replaced ${error} with actual text
+            if (errorAlert && errorAlert.innerText.trim() !== "" && !errorAlert.innerText.includes("${error}")) {
+                errorAlert.style.display = "flex";
+            }
+        });
+    </script>
+</body>
+</html>

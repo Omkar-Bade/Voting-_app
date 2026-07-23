@@ -66,6 +66,45 @@ public class UserDao implements AutoCloseable {
 		}
 	}
 
+	public int registerUser(User user) throws SQLException {
+		String sql = "INSERT INTO users (first_name, last_name, email, password, dob, status, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		try (PreparedStatement insert = connection.prepareStatement(sql)) {
+			insert.setString(1, user.getFirst_name());
+			insert.setString(2, user.getLast_name());
+			insert.setString(3, user.getEmail());
+			insert.setString(4, user.getPassword());
+			insert.setDate(5, user.getDate());
+			insert.setBoolean(6, user.getStatus());
+			insert.setString(7, user.getRole());
+			return insert.executeUpdate();
+		}
+	}
+
+	public boolean emailExists(String email) throws SQLException {
+		if (email == null) {
+			return false;
+		}
+		String sql = "SELECT 1 FROM users WHERE email = ?";
+		try (PreparedStatement select = connection.prepareStatement(sql)) {
+			select.setString(1, email);
+			try (ResultSet rs = select.executeQuery()) {
+				return rs.next();
+			}
+		}
+	}
+
+	public int getTotalVotersCount() throws SQLException {
+		String sql = "SELECT COUNT(*) FROM users";
+		try (PreparedStatement select = connection.prepareStatement(sql)) {
+			try (ResultSet rs = select.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		}
+		return 0;
+	}
+
 	@Override
 	public void close() throws SQLException {
 		if (closeConnection && connection != null) {

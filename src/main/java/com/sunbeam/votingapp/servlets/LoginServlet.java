@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 		
 		// Input validation
 		if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-			resp.sendRedirect("InvalidLogin.html");
+			resp.sendRedirect("index.html?error=true");
 			return;
 		}
 
@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 		try (UserDao userDao = new UserDao()) {
 			user = userDao.loginUser(email, password);
 			if (user == null) {
-				resp.sendRedirect("InvalidLogin.html");
+				resp.sendRedirect("index.html?error=true");
 			} else {
 				// Prevent Session Fixation: recreate session
 				HttpSession oldSession = req.getSession(false);

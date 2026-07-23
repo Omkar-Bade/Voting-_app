@@ -1,26 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #4f46e5;
-  --primary-hover: #4338ca;
-  --primary-light: #e0e7ff;
-  --bg-app: #f8fafc;
-  --bg-card: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --border: #e2e8f0;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-light: rgba(99, 102, 241, 0.15);
+  --bg-app: #090d16;
+  --bg-card: #111827;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: #4f46e5;
+  --input-bg: #1f2937;
+  
   --success: #10b981;
-  --success-light: #d1fae5;
+  --success-bg: rgba(16, 185, 129, 0.1);
+  --success-border: rgba(16, 185, 129, 0.2);
+  
   --error: #ef4444;
-  --error-light: #fee2e2;
+  --error-bg: rgba(239, 68, 68, 0.1);
+  --error-border: rgba(239, 68, 68, 0.2);
+  
   --warning: #f59e0b;
-  --warning-light: #fef3c7;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --warning-bg: rgba(245, 158, 11, 0.1);
+  --warning-border: rgba(245, 158, 11, 0.2);
+  
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 30px -10px rgba(0, 0, 0, 0.7);
   --radius: 12px;
   --radius-lg: 16px;
-  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -30,32 +38,50 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-app);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 24px;
 }
 
-/* Containers */
+/* Container limits */
 .container {
   width: 100%;
-  max-width: 600px;
+  max-width: 680px;
   margin: 0 auto;
 }
 
 .auth-container {
   width: 100%;
-  max-width: 440px;
+  max-width: 480px;
   margin: 0 auto;
 }
 
-/* Card Design */
+/* Two-column layout for login page */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Modern Card Box */
 .card, .voting-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
@@ -64,24 +90,25 @@ body {
   padding: 40px;
   width: 100%;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .card-info {
-  margin-bottom: 30px;
-  text-align: center;
+  margin-bottom: 28px;
 }
 
 .card-info h2 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  color: var(--text-main);
+  color: #ffffff;
   margin-bottom: 8px;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
 }
 
 .card-info p {
@@ -89,14 +116,121 @@ body {
   font-size: 14px;
 }
 
-/* Form Controls */
+/* Stats Panel specific card */
+.stats-card {
+  background: linear-gradient(145deg, #111827 0%, #0d121f 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+.stats-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.stat-val {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--success);
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Alert Boxes */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.alert-success {
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success);
+}
+
+.alert-error {
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error);
+}
+
+/* Form Styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
 .form-group {
   margin-bottom: 20px;
 }
 
 .form-label {
   display: block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-main);
   margin-bottom: 6px;
@@ -105,19 +239,20 @@ body {
 .form-input {
   width: 100%;
   padding: 12px 16px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: inherit;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background-color: #ffffff;
-  color: var(--text-main);
+  background-color: var(--input-bg);
+  color: #ffffff;
   transition: var(--transition);
 }
 
 .form-input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-light);
+  background-color: #1e293b;
 }
 
 /* Buttons */
@@ -126,7 +261,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 12px 24px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   font-family: inherit;
   border-radius: var(--radius);
@@ -152,12 +287,12 @@ body {
 
 .btn-outline {
   background-color: transparent;
-  border-color: var(--border);
+  border: 1px solid var(--border);
   color: var(--text-main);
 }
 
 .btn-outline:hover {
-  background-color: var(--bg-app);
+  background-color: rgba(255, 255, 255, 0.05);
   border-color: var(--text-muted);
 }
 
@@ -166,7 +301,27 @@ body {
   display: flex;
 }
 
-/* Custom Header in App */
+/* Redirect action link */
+.form-footer-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.form-footer-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.form-footer-link a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* App Header block */
 .app-header {
   width: 100%;
   display: flex;
@@ -177,7 +332,7 @@ body {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
 .user-welcome {
@@ -192,27 +347,28 @@ body {
   border-radius: 50%;
   background-color: var(--primary-light);
   color: var(--primary);
+  border: 1px solid var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
   text-transform: uppercase;
 }
 
 .welcome-text {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   font-weight: 500;
 }
 
 .user-name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-main);
+  color: #ffffff;
 }
 
-/* Voting Candidate Items */
+/* Interactive Candidate Items */
 .candidate-group {
   display: flex;
   flex-direction: column;
@@ -240,7 +396,7 @@ body {
   padding: 16px 20px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background-color: var(--bg-card);
+  background-color: #111827;
   transition: var(--transition);
 }
 
@@ -251,13 +407,13 @@ body {
 }
 
 .candidate-full-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--text-main);
+  color: #ffffff;
 }
 
 .candidate-party-name {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--text-muted);
 }
@@ -295,58 +451,69 @@ body {
 }
 
 .candidate-item:hover .item-details {
-  border-color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .candidate-item input[type="radio"]:focus + .item-details {
   box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-/* Result / Status Pages */
+.no-candidates {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Status Cards feedback */
 .status-card {
   text-align: center;
   padding: 50px 40px;
 }
 
 .status-icon {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 24px auto;
-  font-size: 32px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .icon-success {
-  background-color: var(--success-light);
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
   color: var(--success);
 }
 
 .icon-error {
-  background-color: var(--error-light);
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
   color: var(--error);
 }
 
 .icon-warning {
-  background-color: var(--warning-light);
+  background-color: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   color: var(--warning);
 }
 
 .status-card h2 {
   font-size: 24px;
   font-weight: 700;
+  color: #ffffff;
   margin-bottom: 12px;
 }
 
 .status-card p {
   color: var(--text-muted);
-  font-size: 15px;
-  margin-bottom: 30px;
+  font-size: 14px;
+  margin-bottom: 28px;
 }
 
-/* Footer alignment */
 .card-footer {
-  margin-top: 10px;
+  margin-top: 8px;
 }
