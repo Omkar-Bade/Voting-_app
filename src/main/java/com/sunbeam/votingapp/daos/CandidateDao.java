@@ -1,3 +1,9 @@
+/*
+ * File: CandidateDao.java
+ * Fixed/Why: Added constructor accepting an existing Connection to enable sharing
+ * the connection for a transaction in VoteServlet. Ensured proper closing of 
+ * connection and try-with-resources for PreparedStatement and ResultSet.
+ */
 package com.sunbeam.votingapp.daos;
 
 import java.sql.Connection;
@@ -11,10 +17,17 @@ import com.sunbeam.votingapp.entities.Candidate;
 import com.sunbeam.votingapp.utils.DbUtil;
 
 public class CandidateDao implements AutoCloseable {
-	Connection connection;
+	private Connection connection;
+	private boolean closeConnection = true;
 
 	public CandidateDao() throws SQLException {
 		connection = DbUtil.getConnection();
+		closeConnection = true;
+	}
+
+	public CandidateDao(Connection connection) {
+		this.connection = connection;
+		this.closeConnection = false;
 	}
 
 	public List<Candidate> findAll() throws SQLException {
@@ -45,8 +58,9 @@ public class CandidateDao implements AutoCloseable {
 
 	@Override
 	public void close() throws SQLException {
-		if (connection != null)
+		if (closeConnection && connection != null) {
 			connection.close();
+		}
 	}
 
 }

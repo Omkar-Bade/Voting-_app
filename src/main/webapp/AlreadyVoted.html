@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Invalid</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Already Voted - E-Voting App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<h2>You Have Already Registered Your Vote</h2>
-	<a href="logout">Logout</a>
+    <main class="auth-container">
+        <div class="card status-card">
+            <div class="status-icon icon-warning">
+                ⚠
+            </div>
+            <h2>Already Voted</h2>
+            <p>Our records show that you have already cast your vote in this election. To ensure fairness, each user is restricted to a single vote.</p>
+            <div class="card-footer">
+                <a href="logout" class="btn btn-primary btn-block">Logout</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
