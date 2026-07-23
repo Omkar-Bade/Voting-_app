@@ -29,7 +29,10 @@ public class DbUtil {
         String dbUser = System.getenv("DB_USER");
         String dbPassword = System.getenv("DB_PASSWORD");
 
-        if (dbUrl == null || dbUrl.isBlank()) {
+        if (dbUrl == null || dbUrl.isBlank()
+                || dbUser == null || dbUser.isBlank()
+                || dbPassword == null || dbPassword.isBlank()) {
+
             dbUrl = LOCAL_DB_URL;
             dbUser = LOCAL_DB_USER;
             dbPassword = LOCAL_DB_PASSWORD;
