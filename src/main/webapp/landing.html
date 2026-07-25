@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Voting System — A secure, transparent, and fast online voting platform built with Java Servlets and MySQL.">
+    <title>Digital Voting System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body class="landing-body">
+
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <div class="nav-inner">
+            <a href="landing.html" class="nav-brand">
+                <span class="brand-icon">&#9670;</span>
+                DVS
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="btn btn-outline btn-sm">Sign In</a>
+                <a href="register" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Secure &bull; Transparent &bull; Fast
+                </div>
+
+                <h1 class="hero-title">
+                    Digital<br>Voting System
+                </h1>
+
+                <p class="hero-desc">
+                    Cast your vote securely from anywhere. Built with Java Servlets,
+                    JDBC and MySQL with role-based authentication and secure session management.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="index.html" class="btn btn-primary btn-lg">
+                        Sign In
+                        <span class="btn-arrow">&rarr;</span>
+                    </a>
+                    <a href="register" class="btn btn-outline btn-lg">
+                        Create Account
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Card -->
+            <div class="hero-stats">
+                <div class="stats-glass">
+                    <h3 class="stats-glass-title">Election Status</h3>
+
+                    <div class="stats-row">
+                        <span class="stats-row-label">Total Candidates</span>
+                        <span id="stat-candidates" class="stats-row-value">--</span>
+                    </div>
+
+                    <div class="stats-divider"></div>
+
+                    <div class="stats-row">
+                        <span class="stats-row-label">Registered Voters</span>
+                        <span id="stat-voters" class="stats-row-value">--</span>
+                    </div>
+
+                    <div class="stats-divider"></div>
+
+                    <div class="stats-row">
+                        <span class="stats-row-label">Election</span>
+                        <span class="stats-status-pill">
+                            <span class="status-dot"></span>
+                            <span id="stat-status">Loading</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="features-inner">
+            <div class="feature-card">
+                <div class="feature-icon">&#128274;</div>
+                <h4 class="feature-title">Secure Auth</h4>
+                <p class="feature-desc">SHA-256 hashed passwords with CSRF token protection on every form.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#9989;</div>
+                <h4 class="feature-title">One Vote Policy</h4>
+                <p class="feature-desc">Atomic transactions ensure each voter can cast exactly one vote.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128202;</div>
+                <h4 class="feature-title">Live Results</h4>
+                <p class="feature-desc">Real-time election statistics fetched directly from the database.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <p>&copy; 2026 Digital Voting System &mdash; Built by Omkar Bade</p>
+    </footer>
+
+    <script>
+        // Fetch live election stats
+        fetch("stats")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("stat-candidates").innerText = data.totalCandidates;
+                document.getElementById("stat-voters").innerText = data.totalVoters;
+                document.getElementById("stat-status").innerText = data.status;
+            })
+            .catch(() => {
+                document.getElementById("stat-candidates").innerText = "—";
+                document.getElementById("stat-voters").innerText = "—";
+                document.getElementById("stat-status").innerText = "Active";
+            });
+    </script>
+
+</body>
+</html>
