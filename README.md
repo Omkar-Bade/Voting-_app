@@ -73,7 +73,6 @@ VotingApp/
 ├── Dockerfile                         # Container build configuration for Apache Tomcat
 ├── render.yaml                        # Infrastructure-as-code blueprint for Render deployment
 ├── start.sh                           # Dynamic port binding entrypoint script
-├── Deployment.md                      # Detailed production deployment documentation
 ├── VotingApp.war                      # Exported web archive for Tomcat deployment
 └── README.md                          # Project documentation
 ```
@@ -140,8 +139,6 @@ The application is fully configured for automated cloud deployment using **Docke
 | `DB_PASSWORD` | Production Database Password | `<your-railway-db-password>` |
 | `JAVA_OPTS` | JVM Heap Optimization | `-Xms256m -Xmx512m -XX:+UseG1GC` |
 | `PORT` | Dynamically assigned by Render | Automatically injected by container |
-
-For detailed step-by-step instructions on setting up Railway MySQL, building Docker containers, and deploying to Render, see [Deployment.md](file:///d:/Study%20material/C-DAC/C-DAC%20Java/Rohan_sir_notes/Day20/VotingApp/Deployment.md).
 
 ---
 
