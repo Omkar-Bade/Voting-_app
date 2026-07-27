@@ -22,6 +22,35 @@ In traditional paper-based or unmanaged election systems (such as university stu
 
 ---
 
+## 🚀 Use Cases
+
+The **Online Voting Application** is designed to provide secure, transparent, and single-vote digital balloting across various real-world scenarios:
+
+### 🎓 1. Educational Institutions & Student Government
+- **Student Council & Class Representative Elections**: Enables universities, colleges, and schools to conduct secure annual student elections digitally.
+- **Club & Society Leadership Polls**: Allows student tech clubs, cultural societies, and sports committees to vote for leadership positions.
+- **Key Advantage**: Eliminates paper ballots, speeds up tallying, and strictly prevents duplicate voting.
+
+### 🏢 2. Corporate & Organizational Governance
+- **Board of Directors & Committee Voting**: Provides a tamper-resistant platform for board members and shareholders to vote on resolutions or executive appointments.
+- **Internal Employee Recognition**: Facilitates transparent workplace polling for "Employee of the Month", team leadership awards, or innovation contests.
+- **Key Advantage**: Real-time admin statistics dashboard (`StatsServlet`) provides instant election results without human calculation error.
+
+### 🏘️ 3. Housing Societies & Non-Profit Organizations
+- **Homeowners Association (HOA) Board Polls**: Facilitates voting for residential society management committees, maintenance proposals, and community initiatives.
+- **NGO & Trustee Elections**: Enables non-profit organizations and charitable trusts to elect board members and approve strategic decisions.
+- **Key Advantage**: Accessible web interface allows remote or busy members to cast votes effortlessly.
+
+### 📚 4. Academic & Enterprise Java Learning Reference
+- **Java Web Architecture Training**: Serves as a practical reference implementation for **C-DAC** students and developers learning Jakarta Servlets, JDBC DAO pattern, MVC design, and session management.
+- **Security & Cloud Deployment Practice**: Demonstrates best practices for password security (salted SHA-256 via `PasswordUtil`), Docker containerization, and cloud deployment (Render Web Services & Railway MySQL).
+
+### 🗳️ 5. Trade Unions & Professional Associations
+- **Association Member Elections**: Suitable for local chapters of professional bodies (e.g., medical associations, teacher unions, bar associations) to select office bearers.
+- **Key Advantage**: Cryptographic credential security (`salt:hash`) safeguards voter identity while role-based access control separates voters from administrators.
+
+---
+
 ## 📌 Features
 
 ### 👤 Voter Features
