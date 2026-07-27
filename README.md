@@ -4,6 +4,24 @@ A full-stack, secure, web-based Online Voting System built with **Java Servlets*
 
 ---
 
+## 🎯 Real-World Problem Statement
+
+In traditional paper-based or unmanaged election systems (such as university student elections, organizational board polls, or municipal voting), election committees face critical security, efficiency, and integrity challenges:
+
+1. **Voter Fraud & Duplicate Voting**: Lack of centralized, real-time identity locking allows individuals to cast multiple ballots or vote on behalf of absent members.
+2. **Credential Vulnerability**: Insecure storage of voter identity information and plain-text passwords leaves systems vulnerable to data breaches and identity theft.
+3. **Manual & Error-Prone Vote Tallying**: Physical vote counting requires significant manual labor, is time-consuming, and carries a high risk of human calculation errors or deliberate tampering.
+4. **Lack of Transparency & Real-Time Analytics**: Election authorities lack live visibility into turnout rates, candidate standings, and statistical breakdowns during an active poll.
+
+### 💡 The Solution
+
+**VotingApp** provides a modern, secure, and automated digital polling system:
+- **Enforced Single-Vote Policy**: Atomically locks each voter's account (`status = 1`) immediately after ballot submittal, preventing duplicate votes.
+- **Cryptographic Credential Security**: Utilizes salted SHA-256 hashing (`salt:hash`) via `PasswordUtil` to protect user credentials against unauthorized disclosure.
+- **Instant & Automated Analytics**: Provides an administrator dashboard that dynamically tallies votes, calculates candidate leads, and tracks turnout metrics in real time with zero human calculation error.
+
+---
+
 ## 📌 Features
 
 ### 👤 Voter Features
