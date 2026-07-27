@@ -79,53 +79,6 @@ VotingApp/
 
 ---
 
-## 🗄️ Database Schema & Default Credentials
-
-### Database Tables
-1. **`users`**: Stores user profiles, credentials, voting status (`0` = pending, `1` = voted), and system roles (`voter`, `admin`).
-2. **`candidates`**: Stores candidate names, political party affiliations, and live vote counts.
-
-### Seed Accounts (Default Test Credentials)
-
-| Name | Email | Password | Role | Voting Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **Rama Kher** | `rama@gmail.com` | `ram#123` | **admin** | Not Voted (`0`) |
-| **Shekhar Patil** | `shekhar@gmail.com` | `shk#123` | **voter** | Not Voted (`0`) |
-| **Medha Khole** | `medha@gmail.com` | `mad$234` | **voter** | Not Voted (`0`) |
-| **Anil Ambani** | `anil@gmail.com` | `anil` | **voter** | Not Voted (`0`) |
-| **Omkar Bade** | `omkar@gmail.com` | `omkar` | **voter** | Not Voted (`0`) |
-
----
-
-## 🚀 Getting Started (Local Setup)
-
-### Prerequisites
-- **JDK 17 or JDK 21** installed and configured in `JAVA_HOME`.
-- **Apache Tomcat 10.1+** installed locally or integrated into your IDE (Spring Tool Suite / Eclipse).
-- **MySQL Server 8.0+** running locally.
-
-### Step 1: Database Initialization
-1. Open your MySQL Client or Workbench.
-2. Execute the script [`db-init-local.sql`](file:///d:/Study%20material/C-DAC/C-DAC%20Java/Rohan_sir_notes/Day20/VotingApp/db-init-local.sql) to create `classwork_db`, table schemas, and default test data:
-   ```bash
-   mysql -u root -p < db-init-local.sql
-   ```
-
-### Step 2: Configure Database Credentials
-- By default, [`DbUtil.java`](file:///d:/Study%20material/C-DAC/C-DAC%20Java/Rohan_sir_notes/Day20/VotingApp/src/main/java/com/sunbeam/votingapp/utils/DbUtil.java) attempts to read environment variables (`DB_URL`, `DB_USER`, `DB_PASSWORD`).
-- If environment variables are absent, it falls back to local MySQL running on `localhost:3306` with database name `classwork_db`.
-- Alternatively, set the local environment variables in your workspace or IDE launch configuration.
-
-### Step 3: Import & Run in Eclipse / STS
-1. Launch **Spring Tool Suite (STS)** or **Eclipse IDE for Enterprise Java Developers**.
-2. Select **File** > **Import** > **Existing Projects into Workspace**.
-3. Select the `VotingApp` folder as the root directory.
-4. Target an **Apache Tomcat 10.1** Server runtime.
-5. Right-click project > **Run As** > **Run on Server**.
-6. Access the app in browser at: `http://localhost:8080/VotingApp/`
-
----
-
 ## 📜 License & Acknowledgments
 
 Developed as part of the **C-DAC Advanced Computing** curriculum (Sunbeam Institute).
