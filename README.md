@@ -1,6 +1,6 @@
 # 🗳️ Online Voting Application (VotingApp)
 
-A full-stack, secure, web-based Online Voting System built with **Java Servlets**, **JDBC**, **MySQL**, **HTML5/CSS3**, and **Apache Tomcat**. The application features role-based access control for voters and administrators, secure password hashing using salted SHA-256, single-vote enforcement per user, live statistics dashboards, and containerized deployment support via **Docker**, **Render**, and **Railway MySQL**.
+A full-stack, secure, web-based Online Voting System built with **Java Servlets**, **JDBC**, **MySQL**, **HTML5/CSS3**, and **Apache Tomcat**. The application features role-based access control for voters and administrators, secure password hashing using salted SHA-256, single-vote enforcement per user, and live statistics dashboards.
 
 ---
 
@@ -123,22 +123,6 @@ VotingApp/
 4. Target an **Apache Tomcat 10.1** Server runtime.
 5. Right-click project > **Run As** > **Run on Server**.
 6. Access the app in browser at: `http://localhost:8080/VotingApp/`
-
----
-
-## ☁️ Deployment Guide (Render & Railway)
-
-The application is fully configured for automated cloud deployment using **Docker**, **Render** (Web Service), and **Railway** (MySQL Database).
-
-### Environment Variables Matrix
-
-| Variable | Description | Example / Recommended Value |
-| :--- | :--- | :--- |
-| `DB_URL` | MySQL JDBC connection string | `jdbc:mysql://<railway-host>:<port>/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC` |
-| `DB_USER` | Production Database Username | `root` |
-| `DB_PASSWORD` | Production Database Password | `<your-railway-db-password>` |
-| `JAVA_OPTS` | JVM Heap Optimization | `-Xms256m -Xmx512m -XX:+UseG1GC` |
-| `PORT` | Dynamically assigned by Render | Automatically injected by container |
 
 ---
 
